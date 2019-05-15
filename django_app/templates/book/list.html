@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    {% for object in object_list %}
+        {% include 'book/list-inline.html' with book=object %}
+        <br />
+    {% endfor %}
+
+
+{%endblock %}
