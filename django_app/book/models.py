@@ -2,7 +2,32 @@ from django.conf import settings
 from django.db import models
 from author.models import Author
 
+from django.db.models import Q
+
 User = settings.AUTH_USER_MODEL
+
+
+class BookQuerySet(models.QuerySet):
+
+    def search(self, query):
+        lookup = (
+            Q(name__icontains=query) |
+            Q(preview__icontains=query) |
+            Q(author__name__icontains=query)
+        )
+        return self.filter(lookup)
+
+
+class BookManager(models.Manager):
+    def get_queryset(self):
+        return BookQuerySet(self.model, using=self._db)
+
+    def search(self, query=None):
+        print("hello")
+        if query is None:
+            return self.get_queryset().none()
+        return self.get_queryset().search(query)
+
 
 class Book(models.Model):
 
@@ -19,6 +44,7 @@ class Book(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    objects = BookManager()
     
     class Meta:
         ordering = ['-created_at', '-updated_at']

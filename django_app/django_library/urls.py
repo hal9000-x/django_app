@@ -29,6 +29,8 @@ from author.views import (
     author_delete,
 )
 
+from searches.views import search
+
 from book.views import (
     book_list,
     book_create,
@@ -51,6 +53,8 @@ urlpatterns = [
     path('books/<int:id>/', book_details),
     path('books/<int:id>/edit', book_update),
     path('books/<int:id>/delete', book_delete),
+
+    path('search/', search),
 
     path('admin/', admin.site.urls),
 ]
