@@ -1,5 +1,5 @@
 # django_app
-This is a two model Django app to learn Django.
+This is a two model Django app to learn Django web application framework
 
 ### Live Demo
 
