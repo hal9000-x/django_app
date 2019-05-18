@@ -6,7 +6,7 @@
 <h1>{{ title }}</h1>
 {% endif %}
 
-<form method="POST" action="{{request.path}}">
+<form method="POST" action="{{request.path}}" enctype="multipart/form-data">
 
     {% csrf_token %}
     {{ form.as_p }}

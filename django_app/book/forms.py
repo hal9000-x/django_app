@@ -3,13 +3,13 @@ from django import forms
 from .models import Book
 
 
-class AuthorForm(forms.Form):
+class BookForm(forms.Form):
     name = forms.CharField()
-    phone = forms.CharField()
-    email = forms.EmailField()
+    author = forms.CharField()
+    preview = forms.CharField()
 
 
-class AuthorModelForm(forms.ModelForm):
+class BookModelForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['name', 'preview']
+        fields = ['name', 'author', 'published_at', 'cover_image', 'preview']

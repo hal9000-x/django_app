@@ -4,7 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 
 from author.models import Author
 from .models import Book
-#from .forms import BookModelForm
+from .forms import BookModelForm
 
 
 def book_list(request):
@@ -27,15 +27,15 @@ def book_details(request, id):
 
 @staff_member_required
 def book_create(request):
-    form = AuthorModelForm(request.POST or None)
+    form = BookModelForm(request.POST or None, request.FILES or None)
     if form.is_valid():
+        
         print(form.cleaned_data)
-        form.save()
-        #obj = form.save(commit=False)
-        #obj.name = form.cleaned_data.get("name") + "-test!!!"
-        #obj.save()
-        #obj = Author.objects.create(**form.cleaned_data)
-        form = AuthorModelForm()
+        obj = form.save(commit=False)
+        obj.user = request.user
+        obj.save()
+
+        form = BookModelForm()
     template_name = 'author/form.html'
     context = {"form": form, "title": "new author form"}
     return render(request, template_name, context)
