@@ -35,7 +35,7 @@ def author_create(request):
         #obj = Author.objects.create(**form.cleaned_data)
         form = AuthorModelForm()
     template_name = 'author/form.html'
-    context = {"form": form, "title":"new author form"}
+    context = {"form": form, "title":"Create New Author:"}
     return render(request, template_name, context)
 
 

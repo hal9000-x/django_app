@@ -36,19 +36,19 @@ def book_create(request):
         obj.save()
 
         form = BookModelForm()
-    template_name = 'author/form.html'
-    context = {"form": form, "title": "new author form"}
+    template_name = 'book/form.html'
+    context = {"form": form, "title": "Create New Book:"}
     return render(request, template_name, context)
 
 
 @staff_member_required
 def book_update(request, id):
-    obj = get_object_or_404(Author, id=id)
-    form = AuthorModelForm(request.POST or None, instance=obj)
+    obj = get_object_or_404(Book, id=id)
+    form = BookModelForm(request.POST or None, instance=obj)
     if form.is_valid():
         form.save()
-    template_name = 'author/form.html'
-    context = {"form": form, "title": f"Update Author: {obj.name}"}
+    template_name = 'book/form.html'
+    context = {"form": form, "title": f"Update Book: {obj.name}"}
     return render(request, template_name, context)
 
 
