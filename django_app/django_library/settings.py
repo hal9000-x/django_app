@@ -25,7 +25,7 @@ SECRET_KEY = 'i-!uwyc(23(!*gu1dgnssl8y90i+y9uuik$*!wxzwt@v)0)+u('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','control7.net']
+ALLOWED_HOSTS = ['127.0.0.1','192.168.1.80','control7.net']
 
 # Application definition
 
